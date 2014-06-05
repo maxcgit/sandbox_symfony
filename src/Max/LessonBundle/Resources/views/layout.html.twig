@@ -1,0 +1,44 @@
+{% extends "::base.html.twig" %}
+
+
+{% block title 'MaxLessonBundle' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	 <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    {% stylesheets '@MaxLessonBundle/Resources/public/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block javascripts %}
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	{% javascripts '@MaxLessonBundle/Resources/public/js/*' %}
+    	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+
+{% block body %}
+
+	{% block nav %}
+		{% include "MaxLessonBundle::nav.html.twig" %}
+	{% endblock %}
+    <div class="container">
+		<div class="row">
+			<div class="col-sm-8">
+    	    	{% block content %}{% endblock %}
+			</div>
+			<div class="col-sm-3 col-sm-offset-1">
+				side bar
+			</div>     	   
+    	</div>
+	</div>
+	{% block footer %}
+		{% include "MaxLessonBundle::footer.html.twig" %}
+	{% endblock %}
+
+{% endblock %}

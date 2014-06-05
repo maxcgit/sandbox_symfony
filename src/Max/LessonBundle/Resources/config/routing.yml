@@ -1,0 +1,3 @@
+_max:
+    resource: "@MaxLessonBundle/Controller/SiteController.php"
+    type:     annotation
