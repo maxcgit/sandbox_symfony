@@ -1,7 +1,5 @@
 {% extends "::base.html.twig" %}
 
 {% block body2 %}
-	<div>
-	   	{% block content %}{% endblock %}
-	</div>
+	   	{{ block('fos_user_content') }}
 {% endblock %}

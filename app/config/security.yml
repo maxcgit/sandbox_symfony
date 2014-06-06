@@ -1,7 +1,8 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        Max\LessonBundle\Entity\User: plaintext
+        # Max\LessonBundle\Entity\User: plaintext
+        FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -10,11 +11,13 @@ security:
     providers:
         chain_provider:
             chain:
-                providers: [in_memory, db]
-        db:
-            entity:
-                class: Max\LessonBundle\Entity\User
-                property: name
+                providers: [in_memory, fos_userbundle]
+        fos_userbundle:
+            id: fos_user.user_provider.username                
+        # db:
+        #     entity:
+        #         class: Max\LessonBundle\Entity\User
+        #         property: name
         in_memory:
             memory:
                 users:
@@ -25,8 +28,10 @@ security:
         secured_area:
             pattern:    ^/
             anonymous:  ~
-            form_login: ~
-            logout:     ~
+            form_login: 
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+            logout:     true
                 # path:   logout
                 # target: home
             #http_basic:
@@ -34,3 +39,7 @@ security:
 
     access_control:
         # - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
