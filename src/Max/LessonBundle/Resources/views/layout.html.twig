@@ -28,14 +28,7 @@
 		{% include "MaxLessonBundle::nav.html.twig" %}
 	{% endblock %}
     <div class="container">
-		<div class="row">
-			<div class="col-sm-8">
-    	    	{% block content %}{% endblock %}
-			</div>
-			<div class="col-sm-3 col-sm-offset-1">
-				side bar
-			</div>     	   
-    	</div>
+	   	{% block body2 %}{% endblock %}
 	</div>
 	{% block footer %}
 		{% include "MaxLessonBundle::footer.html.twig" %}

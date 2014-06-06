@@ -1,0 +1,14 @@
+{% extends "MaxLessonBundle::layout.html.twig" %}
+
+{% block body2 %}
+
+<div class="row">
+	<div class="col-sm-8">
+    	{% block content %}{% endblock %}
+	</div>
+	<div class="col-sm-3 col-sm-offset-1">
+		side bar
+	</div>     	   
+</div>
+
+{% endblock %}

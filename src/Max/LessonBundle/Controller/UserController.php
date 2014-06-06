@@ -9,11 +9,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Max\LessonBundle\Entity\User;
 use Max\LessonBundle\Form\UserType;
+use Symfony\Component\Security\Core\SecurityContext;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * User controller.
  *
  * @Route("/admin_user")
+ * @Security("is_granted('ROLE_ADMIN')")
  */
 class UserController extends Controller
 {
@@ -105,6 +108,7 @@ class UserController extends Controller
      * @Route("/{id}", name="admin_user_show")
      * @Method("GET")
      * @Template()
+     * @Security("is_granted('ROLE_USER')")
      */
     public function showAction($id)
     {

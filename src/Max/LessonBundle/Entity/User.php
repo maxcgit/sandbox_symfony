@@ -4,6 +4,7 @@ namespace Max\LessonBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -125,4 +126,28 @@ class User
     {
         return $this->description;
     }
+
+    public function getPassword()
+    {
+        return '123';
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');;
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+    public function getUsername()
+    {
+        return $this->name;
+    }
+    public function eraseCredentials()
+    {
+        
+    }
+
 }
